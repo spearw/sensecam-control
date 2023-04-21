@@ -210,7 +210,8 @@ class CameraControl:
         pan = float(resp.text.split()[0].split('=')[1])
         tilt = float(resp.text.split()[1].split('=')[1])
         zoom = float(resp.text.split()[2].split('=')[1])
-        ptz_list = (pan, tilt, zoom)
+        focus = float(resp.text.split()[3].split('=')[1])
+        ptz_list = (pan, tilt, zoom, focus)
 
         return ptz_list
 
@@ -319,3 +320,125 @@ class CameraControl:
         """
         resp = self._camera_command({'info': '1'})
         return resp.text
+
+    def set_focus(self, focus: int = None):
+        """
+        Sets the focus of the device that is connected to the specified camera.
+        Args:
+            focus: focus value.
+
+        Returns:
+            Returns the response from the device to the command sent.
+
+        """
+        return self._camera_command({'focus': focus})
+
+    def get_limits(self):
+        """
+        Gets the limits of the device.
+        Args:
+            None
+
+        Returns:
+            Returns text list of limits of the device.
+        """
+        return self._camera_command({'query': 'limits'}).text
+
+    def set_min_pan(self, min_pan: int = None):
+        """
+        Sets the min_pan of the device that is connected to the specified camera.
+        Args:
+            min_pan: min_pan value.
+
+        Returns:
+            Returns the response from the device to the command sent.
+
+        """
+        return self._camera_command({'MinPan': min_pan})
+
+    def set_max_pan(self, max_pan: int = None):
+        """
+        Sets the max_pan of the device that is connected to the specified camera.
+        Args:
+            max_pan: max_pan value.
+
+        Returns:
+            Returns the response from the device to the command sent.
+
+        """
+        return self._camera_command({'MaxPan': max_pan})
+
+    def set_min_tilt(self, min_tilt: int = None):
+        """
+        Sets the min_tilt of the device that is connected to the specified camera.
+        Args:
+            min_tilt: min_tilt value.
+
+        Returns:
+            Returns the response from the device to the command sent.
+
+        """
+        return self._camera_command({'MinTilt': min_tilt})
+
+    def set_max_tilt(self, max_tilt: int = None):
+        """
+        Sets the max_tilt of the device that is connected to the specified camera.
+        Args:
+            max_tilt: max_tilt value.
+
+        Returns:
+            Returns the response from the device to the command sent.
+
+        """
+        return self._camera_command({'MaxTilt': max_tilt})
+
+    def set_min_zoom(self, min_zoom: int = None):
+        """
+        Sets the min_zoom of the device that is connected to the specified camera.
+        Args:
+            min_zoom: min_zoom value.
+
+        Returns:
+            Returns the response from the device to the command sent.
+
+        """
+        return self._camera_command({'MinZoom': min_zoom})
+
+    def set_max_zoom(self, max_zoom: int = None):
+        """
+        Sets the max_zoom of the device that is connected to the specified camera.
+        Args:
+            max_zoom: max_zoom value.
+
+        Returns:
+            Returns the response from the device to the command sent.
+
+        """
+        return self._camera_command({'MaxZoom': max_zoom})
+
+    def set_min_focus(self, min_focus: int = None):
+        """
+        Sets the min_focus of the device that is connected to the specified camera.
+        Args:
+            min_focus: min_focus value.
+
+        Returns:
+            Returns the response from the device to the command sent.
+
+        """
+        return self._camera_command({'MinFocus': min_focus})
+
+    def set_max_focus(self, max_focus: int = None):
+        """
+        Sets the max_focus of the device that is connected to the specified camera.
+        Args:
+            max_focus: max_focus value.
+
+        Returns:
+            Returns the response from the device to the command sent.
+
+        """
+        return self._camera_command({'MaxFocus': max_focus})
+
+
+
